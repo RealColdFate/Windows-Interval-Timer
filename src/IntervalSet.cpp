@@ -28,7 +28,6 @@ DWORD WINAPI threadRunAll(LPVOID lpParameter) {
     while (!queues->empty()) {
         IntervalSet::runQueue(&queues->front());
         queues->pop();
-        std::cout << "qq popped" << std::endl;
     }
     return 0;
 }
@@ -37,7 +36,6 @@ void IntervalSet::popFromQueue(std::queue<Interval> *queue) {
     queue->front().startCountdown();
     while (queue->front().getTime() != 0);
     queue->pop();
-    std::cout << "popped an interval" << std::endl;
 }
 
 
@@ -45,9 +43,15 @@ bool IntervalSet::empty() {
     return queues.empty();
 }
 
+// microseconds
+using std::chrono_literals::operator ""us;
+
 string IntervalSet::getCurrTime() const {
-    if (!queues.empty())
+    std::this_thread::sleep_for(10us);
+    if (!(queues.empty()))
         return queues.front().front().getMinSecDec();
+    else if (queues.empty())
+        return "00:00.000";
     return "";
 }
 
@@ -60,5 +64,5 @@ void IntervalSet::runAll() {
 string IntervalSet::getCurrName() const {
     if (!queues.empty())
         return queues.front().front().getName();
-    return "";
+    return "Interval Finished";
 }

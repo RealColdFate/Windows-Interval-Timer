@@ -7,7 +7,7 @@
 #include <chrono>
 #include <utility>
 #include <iostream>
-#include <windows.h>
+#include <Windows.h>
 
 using std::string;
 
