@@ -1,8 +1,14 @@
 #include "IntervalSet.h"
 
+#include <utility>
+
 
 IntervalSet::IntervalSet(string &setName) {
     name = setName;
+}
+
+IntervalSet::IntervalSet() {
+    name = "no Name";
 }
 
 string IntervalSet::getName() const {
@@ -44,7 +50,7 @@ bool IntervalSet::empty() {
 }
 
 // microseconds
-using std::chrono_literals::operator ""us;
+using std::chrono_literals::operator""us;
 
 string IntervalSet::getCurrTime() const {
     std::this_thread::sleep_for(10us);
@@ -65,4 +71,8 @@ string IntervalSet::getCurrName() const {
     if (!queues.empty())
         return queues.front().front().getName();
     return "Interval Finished";
+}
+
+void IntervalSet::setQueues(std::queue<std::queue<Interval>> newQueues) {
+    queues = std::move(newQueues);
 }

@@ -45,7 +45,6 @@ public:
     uint64_t getTime() const;
 
 
-
 private:
     // the time modifier Interval uses time in millis so this is to offset to seconds
     const int TIME_MODIFIER = 1000;

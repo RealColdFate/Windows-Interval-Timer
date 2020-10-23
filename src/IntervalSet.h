@@ -9,6 +9,8 @@ class IntervalSet {
 public:
     explicit IntervalSet(string &setName);
 
+    IntervalSet();
+
     bool empty();
 
     std::queue<std::queue<Interval>> &getQueues();
@@ -16,6 +18,8 @@ public:
     string getName() const;
 
     void addQueue(const std::queue<Interval> &queue);
+
+    void setQueues(std::queue<std::queue<Interval>> newQueues);
 
     string getCurrTime() const;
 
